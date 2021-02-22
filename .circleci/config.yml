@@ -1,0 +1,48 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python:3.9.1-browsers
+
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
+      - run:
+          name: install and run
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+            python3 autobooker.py
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "5,58 4 * * *"
+          filters:
+            branches:
+              only:
+                - main
+#       - schedule:
+#           cron: "20,50 12,13,14,15,16,17,18,19,20,21,22,23 * * *"
+#           filters:
+#             branches:
+#               only:
+#                 - main                
+    jobs:
+      - build
