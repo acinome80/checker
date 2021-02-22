@@ -8,7 +8,6 @@ from selenium.webdriver.common.keys import Keys
 # Best buy urls:
 bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
 cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1923&item_id=187885"
-cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1922&item_id=165755"
 
 load_dotenv()
 chrome_options = Options()
@@ -31,6 +30,7 @@ driver.get(bb_url)
 try:
     driver.implicitly_wait(5)
     # BEST BUY
+    print("Checking BB..")
     try:
         availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
         if len(availability) < 2:
@@ -43,8 +43,10 @@ try:
         exit(1)
 
     # CANADA COMPUTERS
+    print("Opening CC website..")
     driver.get(cc_url)
     driver.implicitly_wait(5)
+    print("Checking CC..")
     try:
         availability = driver.find_element_by_class_name("border-danger")
         print("Unavailable at Canada Computers..")
