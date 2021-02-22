@@ -19,7 +19,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            python3 autobooker.py
+            python3 checker.py
       - save_cache:
           paths:
             - ./venv
@@ -33,7 +33,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "5,58 4 * * *"
+          cron: "2 * * * *"
           filters:
             branches:
               only:

@@ -2,4 +2,3 @@ python-dotenv==0.15.0
 selenium==3.141.0
 urllib3==1.26.2
 webdriver-manager==3.2.2
-pytz==2020.4
