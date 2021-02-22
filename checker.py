@@ -43,19 +43,19 @@ try:
         print("Available at bestbuy!")
         exit(1)
 
-    # CANADA COMPUTERS
-    print("Opening CC website..")
-    driver.get(cc_url)
-    driver.implicitly_wait(7)
-    print("Checking CC..")
-    try:
-        print(cc_url)
-        availability = driver.find_element_by_class_name("border-danger")
-        print("Unavailable at Canada Computers..")
-    except Exception as err:
-        print(traceback.format_exc())
-        print("Available at Canada Computers!")
-        exit(1)
+    # # CANADA COMPUTERS
+    # print("Opening CC website..")
+    # driver.get(cc_url)
+    # driver.implicitly_wait(7)
+    # print("Checking CC..")
+    # try:
+    #     print(cc_url)
+    #     availability = driver.find_element_by_class_name("border-danger")
+    #     print("Unavailable at Canada Computers..")
+    # except Exception as err:
+    #     print(traceback.format_exc())
+    #     print("Available at Canada Computers!")
+    #     exit(1)
 
     exit(0)
 
