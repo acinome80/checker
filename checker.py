@@ -23,8 +23,8 @@ else:
     # chrome_options.add_argument("--kiosk") # use this for debugging on Linux/Mac
     chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
 
-driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+# driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 driver.get(cc_url)
 
 try:
