@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
@@ -23,8 +24,8 @@ else:
     # chrome_options.add_argument("--kiosk") # use this for debugging on Linux/Mac
     chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
 
-# driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
+# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 driver.get(cc_url)
 
 try:
@@ -47,6 +48,8 @@ try:
     print("Opening CC website..")
     # driver.get(cc_url)
     print("Checking CC..")
+    time.sleep(3)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 4);")
     try:
         print(cc_url)
         driver.implicitly_wait(5)
@@ -60,6 +63,6 @@ try:
 
 except Exception as err:
     print("Outer error?")
-    print(traceback.format_exc())
+    print(err)
 finally:
     driver.quit()
