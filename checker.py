@@ -28,13 +28,7 @@ else:
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-driver.set_page_load_timeout(10)
-t = time.time()
-try:
-    driver.get(bb_url)
-except TimeoutException:
-    driver.execute_script("window.stop();")
-print("Time consuming:", time.time() - t)
+driver.get(bb_url)
 
 
 try:
