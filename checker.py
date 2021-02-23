@@ -3,7 +3,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Best buy urls:
 bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
@@ -25,7 +25,7 @@ else:
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-# driver.get(bb_url)
+driver.get(cc_url)
 
 try:
     driver.implicitly_wait(5)
@@ -45,15 +45,14 @@ try:
 
     # # CANADA COMPUTERS
     print("Opening CC website..")
-    driver.get(cc_url)
-    driver.implicitly_wait(7)
+    # driver.get(cc_url)
     print("Checking CC..")
     try:
         print(cc_url)
+        driver.implicitly_wait(5)
         availability = driver.find_element_by_class_name("border-danger")
         print("Unavailable at Canada Computers..")
-    except Exception as err:
-        print(traceback.format_exc())
+    except:
         print("Available at Canada Computers!")
         exit(1)
 
