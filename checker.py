@@ -25,37 +25,37 @@ else:
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-driver.get(bb_url)
+# driver.get(bb_url)
 
 try:
     driver.implicitly_wait(5)
     # BEST BUY
-    print("Checking BB..")
-    try:
-        print(bb_url)
-        availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
-        if len(availability) < 2:
-            print(len(availability))
-            print("Less than two available elements..")
-            raise
-        print("Unavailable at best buy..")
-    except:
-        print("Available at bestbuy!")
-        exit(1)
+    # print("Checking BB..")
+    # try:
+    #     print(bb_url)
+    #     availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
+    #     if len(availability) < 2:
+    #         print(len(availability))
+    #         print("Less than two available elements..")
+    #         raise
+    #     print("Unavailable at best buy..")
+    # except:
+    #     print("Available at bestbuy!")
+    #     exit(1)
 
     # # CANADA COMPUTERS
-    # print("Opening CC website..")
-    # driver.get(cc_url)
-    # driver.implicitly_wait(7)
-    # print("Checking CC..")
-    # try:
-    #     print(cc_url)
-    #     availability = driver.find_element_by_class_name("border-danger")
-    #     print("Unavailable at Canada Computers..")
-    # except Exception as err:
-    #     print(traceback.format_exc())
-    #     print("Available at Canada Computers!")
-    #     exit(1)
+    print("Opening CC website..")
+    driver.get(cc_url)
+    driver.implicitly_wait(7)
+    print("Checking CC..")
+    try:
+        print(cc_url)
+        availability = driver.find_element_by_class_name("border-danger")
+        print("Unavailable at Canada Computers..")
+    except Exception as err:
+        print(traceback.format_exc())
+        print("Available at Canada Computers!")
+        exit(1)
 
     exit(0)
 
