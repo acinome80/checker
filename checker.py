@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 # Best buy urls:
 bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
 cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1923&item_id=187885"
-cc_url = "https://www.canadacomputers.com/"
+cc_url = "https://www.canadacomputers.com"
 
 load_dotenv()
 chrome_options = Options()
@@ -63,7 +63,8 @@ try:
         print(cc_url)
         driver.implicitly_wait(5)
         # availability = driver.find_element_by_class_name("border-danger")
-        availability = driver.find_element_by_class_name("mt-2")
+        # availability = driver.find_element_by_class_name("mt-2")
+        availability = driver.find_element_by_id("cc_quick_search")
         print("Unavailable at Canada Computers..")
     except:
         print("Available at Canada Computers!")
