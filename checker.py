@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 # Best buy urls:
 bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
 cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1923&item_id=187885"
-cc_url = "https://www.canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181376"
+cc_url = "canadacomputers.com/product_info.php?cPath=43_557_559&item_id=181376"
 
 load_dotenv()
 chrome_options = Options()
