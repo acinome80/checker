@@ -62,7 +62,8 @@ try:
     try:
         print(cc_url)
         driver.implicitly_wait(5)
-        availability = driver.find_element_by_class_name("border-danger")
+        # availability = driver.find_element_by_class_name("border-danger")
+        availability = driver.find_element_by_class_name("mt-2")
         print("Unavailable at Canada Computers..")
     except:
         print("Available at Canada Computers!")
