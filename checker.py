@@ -49,7 +49,7 @@ try:
 
     # # CANADA COMPUTERS
     print("Opening CC website..")
-    driver.get("www.canadacomputers.com")
+    driver.get("https://www.canadacomputers.com")
     print("Checking CC..")
     try:
         print(cc_url)
