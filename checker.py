@@ -24,7 +24,7 @@ if os.getenv("ENVIRONMENT") == "dev":
 else:
     chrome_options.add_argument("--headless")
     # chrome_options.add_argument("--kiosk") # use this for debugging on Linux/Mac
-    chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
+    # chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
@@ -48,21 +48,17 @@ try:
         exit(1)
 
     # # CANADA COMPUTERS
-    # print("Opening CC website..")
-    # # driver.get(cc_url)
-    # print("Checking CC..")
-    # time.sleep(3)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 4);")
-    # try:
-    #     print(cc_url)
-    #     driver.implicitly_wait(5)
-    #     # availability = driver.find_element_by_class_name("border-danger")
-    #     # availability = driver.find_element_by_class_name("mt-2")
-    #     availability = driver.find_element_by_id("cc_quick_search")
-    #     print("Unavailable at Canada Computers..")
-    # except:
-    #     print("Available at Canada Computers!")
-    #     exit(1)
+    print("Opening CC website..")
+    driver.get(cc_url)
+    print("Checking CC..")
+    try:
+        print(cc_url)
+        driver.implicitly_wait(5)
+        availability = driver.find_element_by_class_name("border-danger")
+        print("Unavailable at Canada Computers..")
+    except:
+        print("Available at Canada Computers!")
+        exit(1)
 
     exit(0)
 
