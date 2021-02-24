@@ -49,7 +49,16 @@ try:
 
     # # CANADA COMPUTERS
     print("Opening CC website..")
-    driver.get("https://www.canadacomputers.com")
+    driver.set_page_load_timeout(15)
+
+    finished = 0
+    while finished == 0:
+        try:
+            driver.get("https://www.canadacomputers.com")
+            finished = 1
+        except:
+            print("trying again..")
+            time.sleep(5)
     print("Checking CC..")
     try:
         print(cc_url)
