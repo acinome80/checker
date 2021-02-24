@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 # Best buy urls:
 bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
 cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1923&item_id=187885"
-cc_url = "https://www.canadacomputers.com"
+cc_url = "www.canadacomputers.com"
 
 load_dotenv()
 chrome_options = Options()
@@ -24,7 +24,7 @@ if os.getenv("ENVIRONMENT") == "dev":
 else:
     chrome_options.add_argument("--headless")
     # chrome_options.add_argument("--kiosk") # use this for debugging on Linux/Mac
-    # chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
+    chrome_options.add_argument("--window-size=3072,1920") # use this for debugging on Windows 3072 x 1920
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
@@ -49,7 +49,7 @@ try:
 
     # # CANADA COMPUTERS
     print("Opening CC website..")
-    driver.get(cc_url)
+    driver.get("www.canadacomputers.com")
     print("Checking CC..")
     try:
         print(cc_url)
