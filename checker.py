@@ -41,7 +41,7 @@ try:
     for url in bb_links:
         driver.get(url)
         try:
-            print(bb_url)
+            print(url)
             availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
             if len(availability) < 2:
                 print(len(availability))
