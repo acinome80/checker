@@ -8,9 +8,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException
 
 # Best buy urls:
-bb_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
 cc_url = "https://www.canadacomputers.com/product_info.php?cPath=710_1925_1920_1923&item_id=187885"
-cc_url = "www.canadacomputers.com"
+bb_g15_3060_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-eng/15264484"
+bb_g15_3070_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g15-15-6-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3070-eng/15264485"
+bb_g14_3060_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g14-14-gaming-laptop-grey-amd-ryzen-9-5900hs-1tb-ssd-16gb-ram-rtx-3060-win-10/15264488"
+bb_g14_3060_white_url = "https://www.bestbuy.ca/en-ca/product/asus-rog-zephyrus-g14-14-gaming-laptop-white-amd-ryzen-9-5900hs-1tb-ssd-32gb-ram-rtx-3060-eng/15264483"
+
+bb_links = [bb_g15_3060_url, bb_g15_3070_url, bb_g14_3060_url, bb_g14_3060_white_url]
 
 load_dotenv()
 chrome_options = Options()
@@ -28,45 +32,51 @@ else:
 
 driver = webdriver.Chrome(os.getenv("WEBDRIVER_PATH"), options=chrome_options)
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-driver.get(bb_url)
 
 try:
     driver.implicitly_wait(5)
     # BEST BUY
+    something_available = False
     print("Checking BB..")
-    try:
-        print(bb_url)
-        availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
-        if len(availability) < 2:
-            print(len(availability))
-            print("Less than two available elements..")
-            raise
-        print("Unavailable at best buy..")
-    except:
-        print("Available at bestbuy!")
-        exit(1)
-
-    # # CANADA COMPUTERS
-    print("Opening CC website..")
-    driver.set_page_load_timeout(15)
-
-    finished = 0
-    while finished == 0:
+    for url in bb_links:
+        driver.get(url)
         try:
-            driver.get("https://www.canadacomputers.com")
-            finished = 1
+            print(bb_url)
+            availability = driver.find_elements_by_class_name("unavailableContainer_302Lh")
+            if len(availability) < 2:
+                print(len(availability))
+                print("Less than two available elements..")
+                raise
+            print("Unavailable at best buy..")
         except:
-            print("trying again..")
-            time.sleep(5)
-    print("Checking CC..")
-    try:
-        print(cc_url)
-        driver.implicitly_wait(5)
-        availability = driver.find_element_by_class_name("border-danger")
-        print("Unavailable at Canada Computers..")
-    except:
-        print("Available at Canada Computers!")
+            print("Available at bestbuy!")
+            something_available = True
+            exit(1)
+        print("")
+
+    if something_available:
         exit(1)
+    # # CANADA COMPUTERS
+    # print("Opening CC website..")
+    # driver.set_page_load_timeout(15)
+
+    # finished = 0
+    # while finished == 0:
+    #     try:
+    #         driver.get("https://www.canadacomputers.com")
+    #         finished = 1
+    #     except:
+    #         print("trying again..")
+    #         time.sleep(5)
+    # print("Checking CC..")
+    # try:
+    #     print(cc_url)
+    #     driver.implicitly_wait(5)
+    #     availability = driver.find_element_by_class_name("border-danger")
+    #     print("Unavailable at Canada Computers..")
+    # except:
+    #     print("Available at Canada Computers!")
+    #     exit(1)
 
     exit(0)
 
